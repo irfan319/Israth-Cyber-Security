@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SECURE • file encryption / decryption</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="cipher-panel">
+        <div class="brand">
+            <span class="logo">🔐</span>
+            <h1>CRYPTEX</h1>
+        </div>
+        <div class="sub">AES-256-GCM · client-side · zero knowledge</div>
+
+        <!-- encryption / decryption toggle -->
+        <div class="mode-toggle">
+            <button id="modeEncryptBtn" class="mode-btn active">🔒 encrypt file</button>
+            <button id="modeDecryptBtn" class="mode-btn">🔓 decrypt file</button>
+        </div>
+
+        <!-- encryption block (default) -->
+        <div id="encryptBlock">
+            <div class="drop-zone" id="encryptDropZone">
+                <div class="drop-icon">📁⬆️</div>
+                <div class="drop-text">drag & drop file or <span class="browse">click to browse</span></div>
+                <div id="encryptFileName" class="file-name"></div>
+                <input type="file" id="encryptFileInput" hidden>
+            </div>
+            
+            <div class="password-area">
+                <label class="input-label">
+                    <span>🔑 encryption password</span>
+                    <span class="hint">(min 8 chars, strong recommended)</span>
+                </label>
+                <div class="password-wrapper">
+                    <input type="password" id="encryptPassword" class="password-input" placeholder="enter secret passphrase">
+                    <span class="password-eye" id="toggleEncryptPwd">👁️</span>
+                </div>
+                <div class="strength-meter" id="encryptStrength">
+                    <div class="strength-bar" style="width: 0%;"></div>
+                </div>
+            </div>
+
+            <button id="encryptBtn" class="btn-prime">
+                <span>⚡</span> encrypt & download
+            </button>
+        </div>
+
+        <!-- decryption block (hidden initially) -->
+        <div id="decryptBlock" class="hidden">
+            <div class="drop-zone" id="decryptDropZone">
+                <div class="drop-icon">🔓📂</div>
+                <div class="drop-text">drag & drop encrypted file or <span class="browse">click to browse</span></div>
+                <div id="decryptFileName" class="file-name"></div>
+                <input type="file" id="decryptFileInput" hidden>
+            </div>
+
+            <div class="password-area">
+                <label class="input-label">🔐 decryption password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="decryptPassword" class="password-input" placeholder="enter passphrase">
+                    <span class="password-eye" id="toggleDecryptPwd">👁️</span>
+                </div>
+            </div>
+
+            <button id="decryptBtn" class="btn-prime">
+                <span>🔓</span> decrypt & download
+            </button>
+        </div>
+
+        <!-- status & progress -->
+        <div id="statusPanel" class="status-panel">
+            <span id="statusIcon">🟡</span>
+            <span id="statusMessage">ready · select file</span>
+        </div>
+        <div id="progressContainer" class="progress-container hidden">
+            <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
+        </div>
+        
+        <div class="footnote">
+            ⚡ AES-256-GCM · integrity assured · no data leaves device
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
